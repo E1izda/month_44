@@ -1,5 +1,3 @@
-// RANDOM COLOR GENERATOR
-
 const buttonsColor = document.querySelectorAll('.btn-color')
 const javaScript = document.querySelector('#js-color')
 
@@ -29,8 +27,6 @@ window.onkeydown = (event) => {
     }
 }
 
-// SLIDER BLOCK
-
 const slides = document.querySelectorAll('.slide')
 const next = document.querySelector('#next')
 const prev = document.querySelector('#prev')
@@ -59,7 +55,7 @@ const autoSlider = (i = 0) => {
         }
         hideSlide()
         showSlide(i)
-    }, 10000)
+    }, 15000)
 }
 
 next.onclick = () => {
