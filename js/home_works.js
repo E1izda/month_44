@@ -26,14 +26,96 @@ gmailInput.addEventListener('keydown', (e) => {
 const childBlock = document.querySelector('.child_block');
 const parentBlock = document.querySelector('.parent_block');
 
-let currentPosition = 0;
-const maxPosition = parentBlock.offsetWidth - childBlock.offsetWidth;
+let posX = 0;
+let posY = 0;
+let dirX = 1; 
+let dirY = 0; 
+
+const step = 3;
+const maxX = parentBlock.offsetWidth - childBlock.offsetWidth;
+const maxY = parentBlock.offsetHeight - childBlock.offsetHeight;
+
 function moveBlock() {
-  if (currentPosition >= maxPosition) {
-    return;
+  if (dirY === 0 && dirX === 1) {
+    posX += step;
+    if (posX >= maxX) {
+      posX = maxX;
+      dirX = 0;
+      dirY = 1;
+    }
   }
-  currentPosition += 3;
-  childBlock.style.left = currentPosition + 'px';
+  else if (dirY === 1 && dirX === 0) {
+    posY += step;
+    if (posY >= maxY) {
+      posY = maxY;
+      dirX = -1;
+      dirY = 0; 
+    }
+  }
+
+  else if (dirY === 0 && dirX === -1) {
+    posX -= step;
+    if (posX <= 0) {
+      posX = 0;
+      dirX = 0;
+      dirY = -1;
+    }
+  }
+
+  else if (dirY === -1 && dirX === 0) {
+    posY -= step;
+    if (posY <= 0) {
+      posY = 0;
+      dirX = 1;
+      dirY = 0; 
+    }
+  }
+
+  childBlock.style.left = posX + 'px';
+  childBlock.style.top = posY + 'px';
+  
   setTimeout(moveBlock, 20);
 }
+
 document.addEventListener('DOMContentLoaded', moveBlock);
+
+const startBtn = document.getElementById('start');
+const stopBtn = document.getElementById('stop');
+const resetBtn = document.getElementById('reset');
+const secondsDisplay = document.getElementById('seconds');
+
+let seconds = 0;
+let timerInterval = null;
+let isRunning = false;
+
+function startTimer() {
+  if (isRunning) {
+    return;
+  }
+  
+  isRunning = true;
+  
+  timerInterval = setInterval(() => {
+    seconds++;
+    secondsDisplay.textContent = seconds;
+  }, 1000);
+}
+
+function stopTimer() {
+  isRunning = false;
+  
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+}
+
+function resetTimer() {
+  stopTimer();
+  seconds = 0;
+  secondsDisplay.textContent = '0';
+}
+
+startBtn.addEventListener('click', startTimer);
+stopBtn.addEventListener('click', stopTimer);
+resetBtn.addEventListener('click', resetTimer);
