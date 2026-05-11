@@ -2,7 +2,7 @@
   {
     "name": "Harry Potter",
     "age": 16,
-    "photo": "https://static.independent.co.uk/2023/04/05/09/newFile-7.jpg"
+    "photo": "https://citaty.info/files/portraits/garri-potter.jpg"
   },
   {
     "name": "Tony Stark",
@@ -12,6 +12,17 @@
   {
     "name": "Walter White",
     "age": 50,
-    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBylqDK3pgrRMnI75TyFJ6yszY_gz3lNIaiQ&s"
+    "photo": "https://upload.wikimedia.org/wikipedia/en/0/03/Walter_White_S5B.png"
+  },
+  {
+    "name": "Sherlock Holmes",
+    "age": 40,
+    "photo": "https://avatars.mds.yandex.net/get-ott/374297/2a0000017c0811ae8a154a135a1c31d771db/375x375"
+  },
+  {
+    "name": "Frodo Baggins",
+    "age": 33,
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5UMN9ILATMeZPtwoXpsskKGo3I1AtSfNriw&s"
   }
 ]
+

@@ -227,3 +227,14 @@
     height: 100%;
     object-fit: cover;
 }
+.character-name {
+    color: var(--orange);
+    font-size: 18px;
+    margin: 0;
+}
+
+.character-age {
+    color: white;
+    font-size: 14px;
+    margin: 0;
+}

@@ -119,3 +119,65 @@ function resetTimer() {
 startBtn.addEventListener('click', startTimer);
 stopBtn.addEventListener('click', stopTimer);
 resetBtn.addEventListener('click', resetTimer);
+
+const DEFAULT_IMAGE = 'https://via.placeholder.com/250x250?text=No+Photo';
+
+const charactersList = document.querySelector('.characters-list');
+
+fetch('../data/characters.json')
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok: ' + response.status);
+    }
+    return response.json();
+  })
+  .then((characters) => {
+    characters.forEach((character) => {
+      const photoSrc = character.photo || DEFAULT_IMAGE;
+
+      const card = document.createElement('div');
+      card.classList.add('character-card');
+
+      card.innerHTML = `
+        <div class="character-photo">
+          <img
+            src="${photoSrc}"
+            alt="${character.name}"
+            onerror="this.src='${DEFAULT_IMAGE}'"
+          />
+        </div>
+        <h3 class="character-name">${character.name}</h3>
+        <p class="character-age">Age: ${character.age}</p>
+      `;
+
+      charactersList.appendChild(card);
+    });
+  })
+  .catch((error) => {
+    console.error('Error characters:', error);
+    charactersList.innerHTML = '<p style="color: red;">Failed to load characters.</p>';
+  });
+
+const bio = new XMLHttpRequest();
+ bio.open('GET', '../data/bio.json', true);
+
+bio.onload = function () {
+  if (bio.status === 200) {
+    const bio = JSON.parse(bio.responseText);
+    console.log('=== My Bio ===');
+    console.log('Name:', bio.name);
+    console.log('Age:', bio.age);
+    console.log('School:', bio.school);
+    console.log('Favourite subject:', bio.favorite_subject);
+    console.log('Hobbies:', bio.hobbies.join(', '));
+    console.log('Full object:', bio);
+  } else {
+    console.error('XMLHttpRequest failed, status:', bio.status);
+  }
+};
+
+bio.onerror = function () {
+  console.error('XMLHttpRequest network error');
+};
+
+bio.send();
