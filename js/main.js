@@ -47,19 +47,16 @@ hideSlide()
 showSlide(index)
 
 
-const autoSlider = (i = 0) => {
+const autoSlider = () => {
     setInterval(() => {
-        i++
-        if (i > slides.length - 1) {
-            i = 0
-        }
+        index = index < slides.length - 1 ? index + 1 : 0
         hideSlide()
-        showSlide(i)
-    }, 15000)
+        showSlide(index)
+    }, 5000)
 }
 
 next.onclick = () => {
-    index < slides.length - 1 ? index++ : index = 0
+    index = index < slides.length - 1 ? index + 1 : 0
     hideSlide()
     showSlide(index)
 }
